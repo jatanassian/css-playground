@@ -1,7 +1,7 @@
 <template>
   <main>
     <h1>CSS Playground</h1>
-    <Settings :transform-values="transform" />
+    <Settings :transform-values="transform" @on-change="changeSettings" v-model:rotateY.number="transform.rotateY" />
     <Box :transform-values="transform" />
   </main>
 </template>
@@ -27,6 +27,7 @@ export default {
   },
   methods: {
     changeSettings(newTransform) {
+      console.log("changing settings from App")
       this.transform = newTransform
     }
   }

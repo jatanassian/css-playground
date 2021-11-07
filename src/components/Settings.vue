@@ -2,22 +2,22 @@
   <section class="settings">
     <div class="settings-container">
       <label>perspective: {{ transform.perspective }}px;</label>
-      <input v-model="transform.perspective" type="range" min="0" max="999" @change="changeSettings">
+      <input v-model="transform.perspective" type="range" min="0" max="999">
 
       <label>rotateX: {{ rotateX }}deg; </label>
       <input v-model="rotateX" type="range" min="-180" max="180">
 
-      <label>rotateY: {{ transform.rotateY }}deg; </label>
-      <input v-model="transform.rotateY" type="range" min="-180" max="180" @input="changeSettings">
+      <label>rotateY: {{ rotateY }}deg; </label>
+      <input :value="rotateY" type="range" min="-180" max="180" @input="updateValue('rotateY', $event.target.value)">
 
       <label>rotateZ: {{ transform.rotateZ }}deg; </label>
-      <input v-model="transform.rotateZ" type="range" min="-180" max="180" @change="changeSettings">
+      <input v-model="transform.rotateZ" type="range" min="-180" max="180">
 
       <label>skewX: {{ transform.skewX }}deg; </label>
-      <input v-model="transform.skewX" type="range" min="-180" max="180" @change="changeSettings">
+      <input v-model="transform.skewX" type="range" min="-180" max="180">
 
       <label>skewY: {{ transform.skewY }}deg; </label>
-      <input v-model="transform.skewY" type="range" min="-180" max="180" @change="changeSettings">
+      <input v-model="transform.skewY" type="range" min="-180" max="180">
 
       <button type="button" @click="reset">
         Reset
@@ -33,23 +33,28 @@
 export default {
   name: 'Settings',
   props: {
-    transformValues: Object
+    transformValues: Object,
+    rotateY: Number
   },
+  emits: ["onChange", "update:rotateY"],
   computed: {
     transform() {
       return { ...this.transformValues }
     },
-    rotateX() {
+    rotateX: {
+      get() {
         return this.transformValues.rotateX
+      },
+      set(newValue) {
+        this.changeSettings("rotateX", newValue)
+      }
     }
   },
   methods: {
-    changeSettings () {
-      console.log(123)
-      this.$emit('onChange', this.transform)
+    updateValue(property, value) {
+      this.$emit(`update:${property}`, value)
     },
-    reset () {
-      console.log('hello')
+    reset() {
       this.$emit('onChange', {
         perspective: 100,
         rotateX: 0,
