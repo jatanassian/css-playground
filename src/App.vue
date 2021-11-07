@@ -1,6 +1,6 @@
 <template>
+  <h1>CSS Playground</h1>
   <main>
-    <h1>CSS Playground</h1>
     <Settings 
       @reset="reset" 
       v-model:perspective.number="transform.perspective" 
@@ -43,3 +43,42 @@ export default {
 }
 </script>
 
+<style>
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 100px;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: monospace, sans-serif;
+  font-size: 22px;
+}
+</style>
