@@ -1,6 +1,8 @@
 <template>
   <section>
-    <div class="box" :style="style" />
+    <div class="box-container">
+      <div class="box" :style="style" />
+    </div>
   </section>
 </template>
 
@@ -18,6 +20,8 @@ export default {
           rotateX(${this.transformValues.rotateX}deg)
           rotateY(${this.transformValues.rotateY}deg)
           rotateZ(${this.transformValues.rotateZ}deg)
+          skewX(${this.transformValues.skewX}deg)
+          skewY(${this.transformValues.skewY}deg)
         `
       }
     }
@@ -26,6 +30,12 @@ export default {
 </script>
 
 <style>
+.box-container {
+  padding: 200px;
+  border: 1px solid #8d81f3;
+  overflow: hidden;
+}
+
 .box {
   width: 150px;
   height: 150px;
