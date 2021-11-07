@@ -1,23 +1,26 @@
 <template>
   <section class="settings">
     <div class="settings-container">
-      <label>perspective: {{ transform.perspective }}px;</label>
-      <input v-model="transform.perspective" type="range" min="0" max="999">
+      <label>perspective: {{ perspective }}px;</label>
+      <input :value="perspective" type="range" min="0" max="999" @input="updateValue('perspective', $event.target.value)">
+
+      <label>rotate: {{ rotate }}deg; </label>
+      <input :value="rotate" type="range" min="-180" max="180" @input="updateValue('rotate', $event.target.value)">
 
       <label>rotateX: {{ rotateX }}deg; </label>
-      <input v-model="rotateX" type="range" min="-180" max="180">
+      <input :value="rotateX" type="range" min="-180" max="180" @input="updateValue('rotateX', $event.target.value)">
 
       <label>rotateY: {{ rotateY }}deg; </label>
       <input :value="rotateY" type="range" min="-180" max="180" @input="updateValue('rotateY', $event.target.value)">
 
-      <label>rotateZ: {{ transform.rotateZ }}deg; </label>
-      <input v-model="transform.rotateZ" type="range" min="-180" max="180">
+      <label>rotateZ: {{ rotateZ }}deg; </label>
+      <input :value="rotateZ" type="range" min="-180" max="180" @input="updateValue('rotateZ', $event.target.value)">
 
-      <label>skewX: {{ transform.skewX }}deg; </label>
-      <input v-model="transform.skewX" type="range" min="-180" max="180">
+      <label>skewX: {{ skewX }}deg; </label>
+      <input :value="skewX" type="range" min="-180" max="180" @input="updateValue('skewX', $event.target.value)">
 
-      <label>skewY: {{ transform.skewY }}deg; </label>
-      <input v-model="transform.skewY" type="range" min="-180" max="180">
+      <label>skewY: {{ skewY }}deg; </label>
+      <input :value="skewY" type="range" min="-180" max="180" @input="updateValue('skewY', $event.target.value)">
 
       <button type="button" @click="reset">
         Reset
@@ -33,29 +36,21 @@
 export default {
   name: 'Settings',
   props: {
-    transformValues: Object,
-    rotateY: Number
+    perspective: Number,
+    rotate: Number,
+    rotateX: Number,
+    rotateY: Number,
+    rotateZ: Number,
+    skewX: Number,
+    skewY: Number
   },
-  emits: ["onChange", "update:rotateY"],
-  computed: {
-    transform() {
-      return { ...this.transformValues }
-    },
-    rotateX: {
-      get() {
-        return this.transformValues.rotateX
-      },
-      set(newValue) {
-        this.changeSettings("rotateX", newValue)
-      }
-    }
-  },
+  emits: ["reset", "update:perspective", "update:rotate", "update:rotateX", "update:rotateY", "update:rotateZ", "update:skewX", "update:skewY",],
   methods: {
     updateValue(property, value) {
       this.$emit(`update:${property}`, value)
     },
     reset() {
-      this.$emit('onChange', {
+      this.$emit('reset', {
         perspective: 100,
         rotateX: 0,
         rotateY: 0,

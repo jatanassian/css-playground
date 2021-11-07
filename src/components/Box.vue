@@ -17,6 +17,7 @@ export default {
       return {
         transform: `
           perspective(${this.transformValues.perspective}px)
+          rotate(${this.transformValues.rotate}deg)
           rotateX(${this.transformValues.rotateX}deg)
           rotateY(${this.transformValues.rotateY}deg)
           rotateZ(${this.transformValues.rotateZ}deg)
