@@ -60,7 +60,7 @@ html {
 
 body {
   font-family: Helvetica;
-  background: #261c33;
+  background: #392759;
   height: 100%;
   margin: 0;
   display: flex; 
