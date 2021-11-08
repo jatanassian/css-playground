@@ -59,17 +59,20 @@ html {
 }
 
 body {
-  display: flex; 
-  align-items: center;
-  justify-content: center;
+  font-family: Helvetica;
+  background: #261c33;
   height: 100%;
   margin: 0;
+  display: flex; 
+  align-items: center; 
+  justify-content: center 
 }
 
 h1 {
+  color: #8d81f3;
   text-align: center;
   font-size: 40px;
-  margin-bottom: 100px;
+  margin-bottom: 80px;
 }
 
 main {
@@ -79,6 +82,6 @@ main {
   max-width: 900px;
   margin: 0 auto;
   font-family: monospace, sans-serif;
-  font-size: 22px;
+  font-size: 20px;
 }
 </style>

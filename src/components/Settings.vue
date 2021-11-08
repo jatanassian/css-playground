@@ -25,7 +25,7 @@
       <button type="button" @click="reset">
         Reset
       </button>
-      <button type="button">
+      <button type="button" @click="copy">
         Copy
       </button>
     </div>
@@ -52,17 +52,65 @@ export default {
     reset() {
       this.$emit('reset', {
         perspective: 100,
+        rotate: 0,
         rotateX: 0,
         rotateY: 0,
         rotateZ: 0,
         skewX: 0,
         skewY: 0
       })
+    },
+    copy() {
+      const el = document.createElement("textarea");
+
+      el.setAttribute("readonly", "");
+      el.style.position = "absolute";
+      el.style.left = "-9999px";
+      el.value = `transform: 
+        perspective(${this.perspective}px)
+        rotate(${this.rotate}deg)
+        rotateX(${this.rotateX}deg)
+        rotateY(${this.rotateY}deg)
+        rotateZ(${this.rotateZ}deg)
+        skewX(${this.skewX}deg)
+        skewY(${this.skewY}deg)
+      `;
+      
+      document.body.appendChild(el);
+
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el)
+      
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+section {
+width: 400px;
+}
 
+label{
+  display: block;
+  color: #fff;
+}
+
+input[type="range"] {
+  display: block;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+button {
+  background-color: #8d81f3;
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  padding: 10px;
+  outline: none;
+  border: none;
+  margin-right: 10px;
+}
 </style>

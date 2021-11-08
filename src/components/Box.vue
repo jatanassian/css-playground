@@ -32,7 +32,8 @@ export default {
 
 <style>
 .box-container {
-  padding: 200px;
+  padding: 100px;
+  margin-left: 10px;
   border: 1px solid #8d81f3;
   overflow: hidden;
 }
