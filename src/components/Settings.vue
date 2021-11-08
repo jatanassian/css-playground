@@ -75,7 +75,7 @@ export default {
         skewX(${this.skewX}deg)
         skewY(${this.skewY}deg)
       `;
-      
+
       document.body.appendChild(el);
 
       el.select();
@@ -112,5 +112,16 @@ button {
   outline: none;
   border: none;
   margin-right: 10px;
+  transition: all 0.25s;
+}
+
+button:hover {
+  background-color: #776af1;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.98);
+  background-color: #6657ef;
 }
 </style>
